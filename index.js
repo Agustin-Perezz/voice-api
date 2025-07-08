@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const PORT = process.env.PORT || 3000;
 const BASE_API_URL = process.env.BASE_API_URL || "http://localhost:3000";
 const TTS_BASE_URL = process.env.TTS_BASE_URL || "http://localhost:5002";
 
