@@ -14,12 +14,13 @@ app.use(express.json());
 
 interface VoiceRequest {
   text: string;
+  speakerId?: string;
 }
 
 app.post(
   "/api/voice",
   async (req: express.Request<{}, {}, VoiceRequest>, res: express.Response) => {
-    const { text } = req.body;
+    const { text, speakerId = "p351" } = req.body;
 
     if (!text) {
       return res.status(400).json({ error: "Text is required" });
@@ -27,7 +28,7 @@ app.post(
 
     try {
       const ttsResponse = await axios.get(
-        `${TTS_BASE_URL}/api/tts?text=${text}&speaker_id=p351&style_wav=&language_id=`,
+        `${TTS_BASE_URL}/api/tts?text=${text}&speaker_id=${speakerId}&style_wav=&language_id=`,
         { responseType: "arraybuffer" }
       );
 
