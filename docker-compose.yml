@@ -1,0 +1,9 @@
+services:
+  coqui-tts:
+    image: ghcr.io/coqui-ai/tts-cpu
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./tts-output:/root/tts-output
+    entrypoint: python3
+    command: TTS/server/server.py --model_name tts_models/en/vctk/vits
